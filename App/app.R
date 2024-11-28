@@ -1167,7 +1167,7 @@ server <- function(input, output, session) {
                 axis.title = element_text(size = 14),
                 axis.line = element_line(size=1.2)) +
           ylab("Gene expression") +
-          xlab(column_dot) +
+          xlab(element_blank()) +
           ggtitle(gene_dot[a])
       }
 
