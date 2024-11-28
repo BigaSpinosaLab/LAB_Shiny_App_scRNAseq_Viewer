@@ -473,8 +473,8 @@ server <- function(input, output, session) {
                        as.character(groups)) 
     
     
-    plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,1], 
-                            UMAP_2 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,2], 
+    plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]][,1], 
+                            UMAP_2 = seurat[["Reductions"]][["umap"]][,2], 
                             column = seurat$Metadata[,column])
     
     p <- ggplot(plot_data, aes(x = UMAP_1, y = UMAP_2, color = column)) +
@@ -514,8 +514,8 @@ server <- function(input, output, session) {
                        as.character(groups)) 
       
       
-      plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,1], 
-                              UMAP_2 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,2], 
+      plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]][,1], 
+                              UMAP_2 = seurat[["Reductions"]][["umap"]][,2], 
                               column = seurat$Metadata[,column])
       
       plot <- ggplot(plot_data, aes(x = UMAP_1, y = UMAP_2, color = column)) +
@@ -601,8 +601,8 @@ server <- function(input, output, session) {
       gene_exprs <- t(as.matrix(seurat$Expression_Matrix[[Ident]][gene,]))
     }
     
-    plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,1], 
-                            UMAP_2 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,2])
+    plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]][,1], 
+                            UMAP_2 = seurat[["Reductions"]][["umap"]][,2])
     
     if (GroupCells) {
       cells <- rownames(seurat[["Metadata"]][which(seurat[["Metadata"]][[column_custom_gene]] %in% column_custom_var_gene),])
@@ -741,8 +741,8 @@ server <- function(input, output, session) {
         gene_exprs <- t(as.matrix(seurat$Expression_Matrix[[Ident]][gene,]))
       }
       
-      plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,1], 
-                              UMAP_2 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,2])
+      plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]][,1], 
+                              UMAP_2 = seurat[["Reductions"]][["umap"]][,2])
       
       if (GroupCells) {
         cells <- rownames(seurat[["Metadata"]][which(seurat[["Metadata"]][[column_custom_gene]] %in% column_custom_var_gene),])
@@ -931,8 +931,8 @@ server <- function(input, output, session) {
     custom_color <- custom_color()
     name <- custom_name()
     
-    plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,1], 
-                            UMAP_2 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,2])
+    plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]][,1], 
+                            UMAP_2 = seurat[["Reductions"]][["umap"]][,2])
     
     plot_data$custom <- ifelse(seurat[["Metadata"]][column_custom][[1]] %in% column_custom_var, name, "Other")
     
@@ -976,8 +976,8 @@ server <- function(input, output, session) {
       custom_color <- custom_color()
       name <- custom_name()
       
-      plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,1], 
-                              UMAP_2 = seurat[["Reductions"]][["umap"]]@cell.embeddings[,2])
+      plot_data <- data.frame(UMAP_1 = seurat[["Reductions"]][["umap"]][,1], 
+                              UMAP_2 = seurat[["Reductions"]][["umap"]][,2])
       
       plot_data$custom <- ifelse(seurat[["Metadata"]][column_custom][[1]] %in% column_custom_var, name, "Other")
       
@@ -1091,8 +1091,6 @@ server <- function(input, output, session) {
     gene_dot <- gene_dot[gene_dot %in% rownames(seurat$Expression_Matrix[[Ident_dot]])]
     
 
-    col_var
-    
     plots <- vector("list", length = length(gene_dot))
     
     for (a in 1:length(gene_dot)){
